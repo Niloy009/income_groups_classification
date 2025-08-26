@@ -4,7 +4,7 @@
 A polling institute seeks to estimate an individual’s **income group** from personal attributes collected in a survey (`einkommen.train`). The dataset contains **30,000** interviews; the **income label is known for 5,000** individuals and **unknown for 25,000**. Some features have **missing values marked “?”**. A **weighting factor** is provided to compensate interview-dependent selection bias. My job is to predict the income group for the 25,000 unlabeled individuals and prepare the data for subsequent regression/correlation analyses.
 
 ## Objective
-Learn a model that predicts a person’s income group  $Y \in \{ \leq 50\text{k}, > 50\text{k} \}$  from attributes $X$ (demographics, education, work, capital gains/losses, hours/week, country, etc.). Deliver **probabilities** $\hat{p}(Y{=}{>}\ 50\text{k}\mid X)$ and **class labels** for all unlabeled cases, and produce a **clean, analysis-ready dataset** suitable for regression/correlation studies.
+Learn a model that predicts a person’s income group  $Y \in { \leq 50\text{k}, > 50\text{k} }$  from attributes $X$ (demographics, education, work, capital gains/losses, hours/week, country, etc.). Deliver **probabilities** $\hat{p}(Y{=}{>}\ 50\text{k}\mid X)$ and **class labels** for all unlabeled cases, and produce a **clean, analysis-ready dataset** suitable for regression/correlation studies.
 
 ## Learning Task & Notation
 - **Labeled set:** \(\mathcal{D}_L=\{(x_i,y_i,w_i)\}_{i=1}^{5000}\)  
