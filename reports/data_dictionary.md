@@ -1,24 +1,31 @@
-# Data Dictionary (v1 – to be finalized in Phase 2)
+# Data Dictionary
 
-| Name            | Type                | Description                                  | Missing token | Planned handling (Phase 3) |
-|-----------------|---------------------|----------------------------------------------|---------------|----------------------------|
-| age             | int                 | Age in years                                 | –             | Median impute + NA flag    |
-| workclass       | categorical         | Employment type (Private, Self-emp, Gov, …)  | "?"           | Add "Unknown"; rare-pool   |
-| fnlwgt          | int (weight)        | Weighting factor (selection bias correction) | –             | Use as sample_weight       |
-| education       | ordinal categorical | Highest education level (ordered)            | –             | Ordinal map                |
-| education_num   | int                 | Schooling/training period (years)            | –             | Median impute + NA flag    |
-| marital_status  | categorical         | Marital status (7 levels)                    | –             | One-hot                    |
-| occupation      | categorical         | Employment area (15 levels)                  | "?"           | Add "Unknown"; rare-pool   |
-| relationship    | categorical         | Household/relationship role                  | –             | One-hot                    |
-| race            | categorical         | Ethnicity (5 levels)                          | –             | One-hot                    |
-| sex             | categorical         | Gender (2 levels)                             | –             | One-hot                    |
-| capital_gain    | int                 | Gains on financial assets                    | –             | log1p + NA flag            |
-| capital_loss    | int                 | Losses on financial assets                   | –             | log1p + NA flag            |
-| hours_per_week  | int                 | Weekly working time                          | –             | Winsorize + NA flag        |
-| native_country  | categorical         | Country of birth (~42 levels)                | "?"           | Add "Unknown"; rare-pool   |
-| income          | target (cat)        | ≤50k / >50k / "?" (unlabeled 25k)           | "?"           | Binary label in train only |
+This document provides descriptions of the variables included in the income dataset (`einkommen.train`).  
+The dataset was preprocessed to assign the following column names.
 
-**Notes.**  
-- Missing values are **"?"** in the raw file.  
-- Education is **ordered** (Preschool … Doctorate).  
-- I will publish a final, fully numeric, encoded table in Phase 9.
+---
+
+| Column Name      | Type        | Description                                                                 |
+|------------------|-------------|-----------------------------------------------------------------------------|
+| **age**          | Numerical   | Age of the individual (in years).                                           |
+| **workclass**    | Categorical | Employment type (e.g., Private, Self-emp, Federal-gov, Local-gov, etc.).    |
+| **fnlwgt**       | Numerical   | Weighting factor to adjust for survey selection bias.                       |
+| **education**    | Categorical | Highest level of education attained (Bachelors, HS-grad, Masters, etc.).    |
+| **education_num**| Numerical   | Years of education completed (numeric representation of `education`).       |
+| **marital_status** | Categorical | Marital status (Married, Divorced, Never-married, Widowed, etc.).           |
+| **occupation**   | Categorical | Occupation type (Tech-support, Sales, Exec-managerial, Farming, etc.).      |
+| **relationship** | Categorical | Family relationship (Husband, Wife, Own-child, Not-in-family, etc.).        |
+| **race**         | Categorical | Ethnicity of the individual (White, Black, Asian-Pac-Islander, etc.).       |
+| **sex**          | Categorical | Gender of the individual (Male/Female).                                     |
+| **capital_gain** | Numerical   | Monetary gains from investments and financial assets.                       |
+| **capital_loss** | Numerical   | Monetary losses from investments and financial assets.                      |
+| **hours_per_week** | Numerical | Average number of working hours per week.                                   |
+| **native_country** | Categorical | Country of birth (e.g., United-States, Germany, India, Mexico, etc.).       |
+| **income**       | Target      | Binary target variable: `<=50K` (0) or `>50K` (1).                          |
+
+---
+
+## Notes
+- Missing values in categorical columns are denoted by `"?"` in the raw dataset and need to be imputed during preprocessing.  
+- The column `education_num` provides a numeric encoding of the `education` level, but both features can be used for analysis.  
+- The target variable `income` is only available for **5,000 individuals**; the remaining **25,000 individuals** are unlabeled.
